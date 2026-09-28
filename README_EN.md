@@ -1,4 +1,4 @@
-# Better Colony Automation (BCA) - Colony Automation Overhaul (4.4)
+# Better Colony Automation (BCA) - Colony Automation Overhaul (4.5)
 
 ## Overview
 

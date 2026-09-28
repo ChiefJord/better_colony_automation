@@ -5,7 +5,7 @@
 
 
 guiTypes = {
-    # Keep this container aligned with Stellaris 4.4 interface/main.gui.
+    # Keep this container aligned with Stellaris 4.5 interface/main.gui.
     containerWindowType = {
         name = "maingui_flag"
         position = { x = 0 y = 0 }

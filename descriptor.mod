@@ -7,6 +7,6 @@ tags={
 	"Gameplay"
 }
 picture="thumbnail.png"
-name="[4.4] Better Colony Automation: Automation Overhaul"
-supported_version="v4.4.*"
+name="[4.5] Better Colony Automation: Automation Overhaul"
+supported_version="v4.5.*"
 remote_file_id="3673829479"

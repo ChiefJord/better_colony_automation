@@ -3,6 +3,6 @@ tags={
     "Fixes"
     "Utilities"
 }
-name="[4.4] BCA & Ultimate Automation Compatibility Patch"
-supported_version="v4.4.*"
+name="[4.5] BCA & Ultimate Automation Compatibility Patch"
+supported_version="v4.5.*"
 remote_file_id="3775138672"
