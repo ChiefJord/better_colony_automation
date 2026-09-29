@@ -127,6 +127,7 @@ bca_has_auto_district_manage = {
         has_generator_designation = yes
         has_mining_designation = yes
         has_farming_designation = yes
+        has_designation = col_nomad_fortress
     }
 }
 

@@ -18,6 +18,12 @@ defined_text = {
         }
         localization_key = "bca_planet_setting_auto_district_management_generator"
     }
+    text = {
+        trigger = {
+            has_designation = col_nomad_fortress
+        }
+        localization_key = "bca_planet_setting_auto_district_management_fortress"
+    }
     default = "bca_planet_setting_auto_district_management_default"
 }
 
