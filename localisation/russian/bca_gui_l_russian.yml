@@ -19,7 +19,11 @@
   BCA_PLANET_SETTING_prebuild_rare_resource_buildings_DESC: "Предварительно строить здания редких ресурсов, когда нет дефицита бюджета."
   BCA_PLANET_SETTING_arcology_project_candidate: "£district£ £decision£ Кандидат на аркологию"
   BCA_PLANET_SETTING_arcology_project_candidate_DESC: "Отметить как кандидата на аркологию. Автоматизация будет планировать, исходя из этой цели."
-  BCA_PLANET_SETTING_WORLD_TRANSFORM_CANDIDATE_CANCEL_DESC: "Отменить статус кандидата для планеты. Планы вторичных районов вернутся к текущему состоянию."
+  BCA_PLANET_SETTING_ARKSHIP_UPGRADE_CANDIDATE: "£decision£ Кандидат на улучшение ковчега"
+  BCA_PLANET_SETTING_ARKSHIP_UPGRADE_CANDIDATE_DESC: "Отметить как кандидата на улучшение ковчега. Пока кандидат активен, не ставьте в очередь исходное улучшение ковчега."
+  BCA_PLANET_SETTING_WORLD_TRANSFORM_CANDIDATE: "£decision£ Кандидат на преобразование"
+  BCA_PLANET_SETTING_WORLD_TRANSFORM_CANDIDATE_DESC: "Отметить эту колонию как кандидата на доступное преобразование мира."
+  BCA_PLANET_SETTING_WORLD_TRANSFORM_CANDIDATE_CANCEL_DESC: "Отменить статус кандидата на преобразование этой колонии."
 
   PRIMARY_DISTRICT_SETTINGS: "§EНастройки первичных районов§!"
   SECONDARY_DISTRICT_SETTINGS: "§EНастройки вторичных районов§!"

@@ -16,73 +16,71 @@ country_event = {
         is_ai = no
     }
     immediate = {
-        # 1. 重置计数器
+        # Reset the shared candidate list.
         set_variable = {
-            which = bca_arcology_project_candidate_planet_count
+            which = bca_world_transform_candidate_planet_count
             value = 0
         }
-        # 2. 遍历并利用你的effect将符合条件的星球层层保存到 bca_arcology_project_candidate_planet_01~09 中
+        # Gather valid Arcology and Arkship-upgrade candidates.
         every_owned_colony = {
             limit = {
-                has_modifier = bca_pm_arcology_project_candidate
+                OR = {
+                    has_modifier = bca_pm_arcology_project_candidate
+                    has_modifier = bca_pm_arkship_upgrade_candidate
+                }
             }
             if = {
                 limit = {
+                    has_modifier = bca_pm_arcology_project_candidate
+                    bca_can_be_arcology_project_candidate = no
+                }
+                carrier_event = { id=colony_automation_event.100 }
+            }
+            else_if = {
+                limit = {
+                    has_modifier = bca_pm_arkship_upgrade_candidate
                     NOR = {
-                        AND = {
-                            NOR = {
-                                is_planet_class = pc_city
-                                is_planet_class = pc_relic
-                                has_modifier = resort_colony
-                                has_modifier = penal_colony
-                                has_modifier = slave_colony
-                                has_modifier = pm_wenkwort_custodian
-                                has_designation = col_nanotech_world
-                            }
-                            exists = owner
-                            owner = { has_ascension_perk = ap_arcology_project }
-                        }
-                        AND = {
-                            is_planet_class = pc_relic
-                            exists = owner
-                            owner = {
-                                OR = {
-                                    is_regular_empire = yes
-                                    has_valid_civic = civic_machine_servitor
-                                }
-                            }
-                        }
+                        bca_can_upgrade_arkship_to_tier_2 = yes
+                        bca_can_upgrade_arkship_to_tier_3 = yes
                     }
                 }
                 carrier_event = { id=colony_automation_event.100 }
             }
-            # city_world_candidate
             else_if = {
                 limit = {
-                    bca_has_resource_for_arcology_project = yes
                     OR = {
                         AND = {
-                            free_district_slots < 1
-                            num_uncleared_blockers < 1
-                            check_variable = {
-                                which = bca_num_queued_districts
-                                value = 0
+                            has_modifier = bca_pm_arcology_project_candidate
+                            bca_has_resource_for_arcology_project = yes
+                            OR = {
+                                AND = {
+                                    free_district_slots < 1
+                                    num_uncleared_blockers < 1
+                                    check_variable = {
+                                        which = bca_num_queued_districts
+                                        value = 0
+                                    }
+                                    num_districts = { type = district_farming value < 1 }
+                                    num_districts = { type = district_mining value < 1 }
+                                    num_districts = { type = district_generator value < 1 }
+                                    # Volcanic Worlds
+                                    num_districts = { type = district_geothermal value < 1 }
+                                    num_districts = { type = district_melting value < 1 }
+                                    num_districts = { type = district_polytechnic value < 1 }
+                                    NOT = { has_carrier_flag = legendary_leader_planet }
+                                }
+                                AND = {
+                                    is_planet_class = pc_relic
+                                    is_artificial = no
+                                    exists = owner
+                                    num_uncleared_blockers < 1
+                                    owner = { has_technology = tech_housing_2 }
+                                }
                             }
-                            num_districts = { type = district_farming value < 1 }
-                            num_districts = { type = district_mining value < 1 }
-                            num_districts = { type = district_generator value < 1 }
-                            # Volcanic Worlds
-                            num_districts = { type = district_geothermal value < 1 }
-                            num_districts = { type = district_melting value < 1 }
-                            num_districts = { type = district_polytechnic value < 1 }
-                            NOT = { has_carrier_flag = legendary_leader_planet }
                         }
                         AND = {
-                            is_planet_class = pc_relic
-                            is_artificial = no
-                            exists = owner
-                            num_uncleared_blockers < 1
-                            owner = { has_technology = tech_housing_2 }
+                            has_modifier = bca_pm_arkship_upgrade_candidate
+                            bca_has_resource_for_arkship_upgrade = yes
                         }
                     }
                 }
@@ -90,162 +88,162 @@ country_event = {
                     limit = {
                         owner = {
                             check_variable = {
-                                which = bca_arcology_project_candidate_planet_count
+                                which = bca_world_transform_candidate_planet_count
                                 value = 0
                             }
                         }
                     }
                     owner = {
                         add_variable = {
-                            which = bca_arcology_project_candidate_planet_count
+                            which = bca_world_transform_candidate_planet_count
                             value = 1
                         }
                     }
-                    save_event_target_as = bca_arcology_project_candidate_planet_01
+                    save_event_target_as = bca_world_transform_candidate_planet_01
                 }
                 else_if = {
                     limit = {
                         owner = {
                             check_variable = {
-                                which = bca_arcology_project_candidate_planet_count
+                                which = bca_world_transform_candidate_planet_count
                                 value = 1
                             }
                         }
                     }
                     owner = {
                         add_variable = {
-                            which = bca_arcology_project_candidate_planet_count
+                            which = bca_world_transform_candidate_planet_count
                             value = 1
                         }
                     }
-                    save_event_target_as = bca_arcology_project_candidate_planet_02
+                    save_event_target_as = bca_world_transform_candidate_planet_02
                 }
                 else_if = {
                     limit = {
                         owner = {
                             check_variable = {
-                                which = bca_arcology_project_candidate_planet_count
+                                which = bca_world_transform_candidate_planet_count
                                 value = 2
                             }
                         }
                     }
                     owner = {
                         add_variable = {
-                            which = bca_arcology_project_candidate_planet_count
+                            which = bca_world_transform_candidate_planet_count
                             value = 1
                         }
                     }
-                    save_event_target_as = bca_arcology_project_candidate_planet_03
+                    save_event_target_as = bca_world_transform_candidate_planet_03
                 }
                 else_if = {
                     limit = {
                         owner = {
                             check_variable = {
-                                which = bca_arcology_project_candidate_planet_count
+                                which = bca_world_transform_candidate_planet_count
                                 value = 3
                             }
                         }
                     }
                     owner = {
                         add_variable = {
-                            which = bca_arcology_project_candidate_planet_count
+                            which = bca_world_transform_candidate_planet_count
                             value = 1
                         }
                     }
-                    save_event_target_as = bca_arcology_project_candidate_planet_04
+                    save_event_target_as = bca_world_transform_candidate_planet_04
                 }
                 else_if = {
                     limit = {
                         owner = {
                             check_variable = {
-                                which = bca_arcology_project_candidate_planet_count
+                                which = bca_world_transform_candidate_planet_count
                                 value = 4
                             }
                         }
                     }
                     owner = {
                         add_variable = {
-                            which = bca_arcology_project_candidate_planet_count
+                            which = bca_world_transform_candidate_planet_count
                             value = 1
                         }
                     }
-                    save_event_target_as = bca_arcology_project_candidate_planet_05
+                    save_event_target_as = bca_world_transform_candidate_planet_05
                 }
                 else_if = {
                     limit = {
                         owner = {
                             check_variable = {
-                                which = bca_arcology_project_candidate_planet_count
+                                which = bca_world_transform_candidate_planet_count
                                 value = 5
                             }
                         }
                     }
                     owner = {
                         add_variable = {
-                            which = bca_arcology_project_candidate_planet_count
+                            which = bca_world_transform_candidate_planet_count
                             value = 1
                         }
                     }
-                    save_event_target_as = bca_arcology_project_candidate_planet_06
+                    save_event_target_as = bca_world_transform_candidate_planet_06
                 }
                 else_if = {
                     limit = {
                         owner = {
                             check_variable = {
-                                which = bca_arcology_project_candidate_planet_count
+                                which = bca_world_transform_candidate_planet_count
                                 value = 6
                             }
                         }
                     }
                     owner = {
                         add_variable = {
-                            which = bca_arcology_project_candidate_planet_count
+                            which = bca_world_transform_candidate_planet_count
                             value = 1
                         }
                     }
-                    save_event_target_as = bca_arcology_project_candidate_planet_07
+                    save_event_target_as = bca_world_transform_candidate_planet_07
                 }
                 else_if = {
                     limit = {
                         owner = {
                             check_variable = {
-                                which = bca_arcology_project_candidate_planet_count
+                                which = bca_world_transform_candidate_planet_count
                                 value = 7
                             }
                         }
                     }
                     owner = {
                         add_variable = {
-                            which = bca_arcology_project_candidate_planet_count
+                            which = bca_world_transform_candidate_planet_count
                             value = 1
                         }
                     }
-                    save_event_target_as = bca_arcology_project_candidate_planet_08
+                    save_event_target_as = bca_world_transform_candidate_planet_08
                 }
                 else_if = {
                     limit = {
                         owner = {
                             check_variable = {
-                                which = bca_arcology_project_candidate_planet_count
+                                which = bca_world_transform_candidate_planet_count
                                 value = 8
                             }
                         }
                     }
                     owner = {
                         add_variable = {
-                            which = bca_arcology_project_candidate_planet_count
+                            which = bca_world_transform_candidate_planet_count
                             value = 1
                         }
                     }
-                    save_event_target_as = bca_arcology_project_candidate_planet_09
+                    save_event_target_as = bca_world_transform_candidate_planet_09
                 }
             }
         }
-        # 3. 检查：如果有2个及以上目标，弹出 .110 列表界面；如果只有1个目标，直接跳转至 .102 确认界面
+        # Show the list for multiple candidates, otherwise open its confirmation.
         if = {
             limit = {
                 check_variable = {
-                    which = bca_arcology_project_candidate_planet_count
+                    which = bca_world_transform_candidate_planet_count
                     value >= 2
                 }
             }
@@ -254,11 +252,11 @@ country_event = {
         else_if = {
             limit = {
                 check_variable = {
-                    which = bca_arcology_project_candidate_planet_count
+                    which = bca_world_transform_candidate_planet_count
                     value = 1
                 }
             }
-            event_target:bca_arcology_project_candidate_planet_01 = {
+            event_target:bca_world_transform_candidate_planet_01 = {
                 carrier_event = { id = colony_automation_event.102 }
             }
         }
@@ -277,7 +275,7 @@ country_event = {
         name = colony_automation_event.110.locate_all
         trigger = {
             check_variable = {
-                which = bca_arcology_project_candidate_planet_count
+                which = bca_world_transform_candidate_planet_count
                 value > 0
             }
         }
@@ -285,180 +283,180 @@ country_event = {
             if = {
                 limit = {
                     check_variable = {
-                        which = bca_arcology_project_candidate_planet_count
+                        which = bca_world_transform_candidate_planet_count
                         value >= 1
                     }
-                    exists = event_target:bca_arcology_project_candidate_planet_01
+                    exists = event_target:bca_world_transform_candidate_planet_01
                 }
                 create_message = {
-                    type = MESSAGE_BCA_ARCOLOGY_CANDIDATE_LOCATE
+                    type = MESSAGE_BCA_WORLD_TRANSFORM_CANDIDATE_LOCATE
                     days = 1
-                    localization = MESSAGE_BCA_ARCOLOGY_CANDIDATE_LOCATE_DESC
-                    target = event_target:bca_arcology_project_candidate_planet_01.carrier
+                    localization = MESSAGE_BCA_WORLD_TRANSFORM_CANDIDATE_LOCATE_DESC
+                    target = event_target:bca_world_transform_candidate_planet_01.carrier
                     variable = {
                         type = name
                         localization = PLANET
-                        scope = event_target:bca_arcology_project_candidate_planet_01.carrier
+                        scope = event_target:bca_world_transform_candidate_planet_01.carrier
                     }
                 }
             }
             if = {
                 limit = {
                     check_variable = {
-                        which = bca_arcology_project_candidate_planet_count
+                        which = bca_world_transform_candidate_planet_count
                         value >= 2
                     }
-                    exists = event_target:bca_arcology_project_candidate_planet_02
+                    exists = event_target:bca_world_transform_candidate_planet_02
                 }
                 create_message = {
-                    type = MESSAGE_BCA_ARCOLOGY_CANDIDATE_LOCATE
+                    type = MESSAGE_BCA_WORLD_TRANSFORM_CANDIDATE_LOCATE
                     days = 1
-                    localization = MESSAGE_BCA_ARCOLOGY_CANDIDATE_LOCATE_DESC
-                    target = event_target:bca_arcology_project_candidate_planet_02.carrier
+                    localization = MESSAGE_BCA_WORLD_TRANSFORM_CANDIDATE_LOCATE_DESC
+                    target = event_target:bca_world_transform_candidate_planet_02.carrier
                     variable = {
                         type = name
                         localization = PLANET
-                        scope = event_target:bca_arcology_project_candidate_planet_02.carrier
+                        scope = event_target:bca_world_transform_candidate_planet_02.carrier
                     }
                 }
             }
             if = {
                 limit = {
                     check_variable = {
-                        which = bca_arcology_project_candidate_planet_count
+                        which = bca_world_transform_candidate_planet_count
                         value >= 3
                     }
-                    exists = event_target:bca_arcology_project_candidate_planet_03
+                    exists = event_target:bca_world_transform_candidate_planet_03
                 }
                 create_message = {
-                    type = MESSAGE_BCA_ARCOLOGY_CANDIDATE_LOCATE
+                    type = MESSAGE_BCA_WORLD_TRANSFORM_CANDIDATE_LOCATE
                     days = 1
-                    localization = MESSAGE_BCA_ARCOLOGY_CANDIDATE_LOCATE_DESC
-                    target = event_target:bca_arcology_project_candidate_planet_03.carrier
+                    localization = MESSAGE_BCA_WORLD_TRANSFORM_CANDIDATE_LOCATE_DESC
+                    target = event_target:bca_world_transform_candidate_planet_03.carrier
                     variable = {
                         type = name
                         localization = PLANET
-                        scope = event_target:bca_arcology_project_candidate_planet_03.carrier
+                        scope = event_target:bca_world_transform_candidate_planet_03.carrier
                     }
                 }
             }
             if = {
                 limit = {
                     check_variable = {
-                        which = bca_arcology_project_candidate_planet_count
+                        which = bca_world_transform_candidate_planet_count
                         value >= 4
                     }
-                    exists = event_target:bca_arcology_project_candidate_planet_04
+                    exists = event_target:bca_world_transform_candidate_planet_04
                 }
                 create_message = {
-                    type = MESSAGE_BCA_ARCOLOGY_CANDIDATE_LOCATE
+                    type = MESSAGE_BCA_WORLD_TRANSFORM_CANDIDATE_LOCATE
                     days = 1
-                    localization = MESSAGE_BCA_ARCOLOGY_CANDIDATE_LOCATE_DESC
-                    target = event_target:bca_arcology_project_candidate_planet_04.carrier
+                    localization = MESSAGE_BCA_WORLD_TRANSFORM_CANDIDATE_LOCATE_DESC
+                    target = event_target:bca_world_transform_candidate_planet_04.carrier
                     variable = {
                         type = name
                         localization = PLANET
-                        scope = event_target:bca_arcology_project_candidate_planet_04.carrier
+                        scope = event_target:bca_world_transform_candidate_planet_04.carrier
                     }
                 }
             }
             if = {
                 limit = {
                     check_variable = {
-                        which = bca_arcology_project_candidate_planet_count
+                        which = bca_world_transform_candidate_planet_count
                         value >= 5
                     }
-                    exists = event_target:bca_arcology_project_candidate_planet_05
+                    exists = event_target:bca_world_transform_candidate_planet_05
                 }
                 create_message = {
-                    type = MESSAGE_BCA_ARCOLOGY_CANDIDATE_LOCATE
+                    type = MESSAGE_BCA_WORLD_TRANSFORM_CANDIDATE_LOCATE
                     days = 1
-                    localization = MESSAGE_BCA_ARCOLOGY_CANDIDATE_LOCATE_DESC
-                    target = event_target:bca_arcology_project_candidate_planet_05.carrier
+                    localization = MESSAGE_BCA_WORLD_TRANSFORM_CANDIDATE_LOCATE_DESC
+                    target = event_target:bca_world_transform_candidate_planet_05.carrier
                     variable = {
                         type = name
                         localization = PLANET
-                        scope = event_target:bca_arcology_project_candidate_planet_05.carrier
+                        scope = event_target:bca_world_transform_candidate_planet_05.carrier
                     }
                 }
             }
             if = {
                 limit = {
                     check_variable = {
-                        which = bca_arcology_project_candidate_planet_count
+                        which = bca_world_transform_candidate_planet_count
                         value >= 6
                     }
-                    exists = event_target:bca_arcology_project_candidate_planet_06
+                    exists = event_target:bca_world_transform_candidate_planet_06
                 }
                 create_message = {
-                    type = MESSAGE_BCA_ARCOLOGY_CANDIDATE_LOCATE
+                    type = MESSAGE_BCA_WORLD_TRANSFORM_CANDIDATE_LOCATE
                     days = 1
-                    localization = MESSAGE_BCA_ARCOLOGY_CANDIDATE_LOCATE_DESC
-                    target = event_target:bca_arcology_project_candidate_planet_06.carrier
+                    localization = MESSAGE_BCA_WORLD_TRANSFORM_CANDIDATE_LOCATE_DESC
+                    target = event_target:bca_world_transform_candidate_planet_06.carrier
                     variable = {
                         type = name
                         localization = PLANET
-                        scope = event_target:bca_arcology_project_candidate_planet_06.carrier
+                        scope = event_target:bca_world_transform_candidate_planet_06.carrier
                     }
                 }
             }
             if = {
                 limit = {
                     check_variable = {
-                        which = bca_arcology_project_candidate_planet_count
+                        which = bca_world_transform_candidate_planet_count
                         value >= 7
                     }
-                    exists = event_target:bca_arcology_project_candidate_planet_07
+                    exists = event_target:bca_world_transform_candidate_planet_07
                 }
                 create_message = {
-                    type = MESSAGE_BCA_ARCOLOGY_CANDIDATE_LOCATE
+                    type = MESSAGE_BCA_WORLD_TRANSFORM_CANDIDATE_LOCATE
                     days = 1
-                    localization = MESSAGE_BCA_ARCOLOGY_CANDIDATE_LOCATE_DESC
-                    target = event_target:bca_arcology_project_candidate_planet_07.carrier
+                    localization = MESSAGE_BCA_WORLD_TRANSFORM_CANDIDATE_LOCATE_DESC
+                    target = event_target:bca_world_transform_candidate_planet_07.carrier
                     variable = {
                         type = name
                         localization = PLANET
-                        scope = event_target:bca_arcology_project_candidate_planet_07.carrier
+                        scope = event_target:bca_world_transform_candidate_planet_07.carrier
                     }
                 }
             }
             if = {
                 limit = {
                     check_variable = {
-                        which = bca_arcology_project_candidate_planet_count
+                        which = bca_world_transform_candidate_planet_count
                         value >= 8
                     }
-                    exists = event_target:bca_arcology_project_candidate_planet_08
+                    exists = event_target:bca_world_transform_candidate_planet_08
                 }
                 create_message = {
-                    type = MESSAGE_BCA_ARCOLOGY_CANDIDATE_LOCATE
+                    type = MESSAGE_BCA_WORLD_TRANSFORM_CANDIDATE_LOCATE
                     days = 1
-                    localization = MESSAGE_BCA_ARCOLOGY_CANDIDATE_LOCATE_DESC
-                    target = event_target:bca_arcology_project_candidate_planet_08.carrier
+                    localization = MESSAGE_BCA_WORLD_TRANSFORM_CANDIDATE_LOCATE_DESC
+                    target = event_target:bca_world_transform_candidate_planet_08.carrier
                     variable = {
                         type = name
                         localization = PLANET
-                        scope = event_target:bca_arcology_project_candidate_planet_08.carrier
+                        scope = event_target:bca_world_transform_candidate_planet_08.carrier
                     }
                 }
             }
             if = {
                 limit = {
                     check_variable = {
-                        which = bca_arcology_project_candidate_planet_count
+                        which = bca_world_transform_candidate_planet_count
                         value >= 9
                     }
-                    exists = event_target:bca_arcology_project_candidate_planet_09
+                    exists = event_target:bca_world_transform_candidate_planet_09
                 }
                 create_message = {
-                    type = MESSAGE_BCA_ARCOLOGY_CANDIDATE_LOCATE
+                    type = MESSAGE_BCA_WORLD_TRANSFORM_CANDIDATE_LOCATE
                     days = 1
-                    localization = MESSAGE_BCA_ARCOLOGY_CANDIDATE_LOCATE_DESC
-                    target = event_target:bca_arcology_project_candidate_planet_09.carrier
+                    localization = MESSAGE_BCA_WORLD_TRANSFORM_CANDIDATE_LOCATE_DESC
+                    target = event_target:bca_world_transform_candidate_planet_09.carrier
                     variable = {
                         type = name
                         localization = PLANET
-                        scope = event_target:bca_arcology_project_candidate_planet_09.carrier
+                        scope = event_target:bca_world_transform_candidate_planet_09.carrier
                     }
                 }
             }
@@ -467,16 +465,15 @@ country_event = {
     option = {
         name = colony_automation_event.110.opt.01
         trigger = {
-            # 使用当前刷新的计数器进行范围截断，避免上一轮的幽灵 event_target 被显示出来
+            # Use the refreshed count to avoid stale event targets.
             check_variable = {
-                which = bca_arcology_project_candidate_planet_count
+                which = bca_world_transform_candidate_planet_count
                 value >= 1
             }
-            exists = event_target:bca_arcology_project_candidate_planet_01
+            exists = event_target:bca_world_transform_candidate_planet_01
         }
         hidden_effect = {
-            # 直接转跳到星球作用域的星球事件，不需要额外保存 event_target 了
-            event_target:bca_arcology_project_candidate_planet_01 = {
+            event_target:bca_world_transform_candidate_planet_01 = {
                 carrier_event = { id = colony_automation_event.102 }
             }
         }
@@ -484,16 +481,15 @@ country_event = {
     option = {
         name = colony_automation_event.110.opt.02
         trigger = {
-            # 使用当前刷新的计数器进行范围截断，避免上一轮的幽灵 event_target 被显示出来
+            # Use the refreshed count to avoid stale event targets.
             check_variable = {
-                which = bca_arcology_project_candidate_planet_count
+                which = bca_world_transform_candidate_planet_count
                 value >= 2
             }
-            exists = event_target:bca_arcology_project_candidate_planet_02
+            exists = event_target:bca_world_transform_candidate_planet_02
         }
         hidden_effect = {
-            # 直接转跳到星球作用域的星球事件，不需要额外保存 event_target 了
-            event_target:bca_arcology_project_candidate_planet_02 = {
+            event_target:bca_world_transform_candidate_planet_02 = {
                 carrier_event = { id = colony_automation_event.102 }
             }
         }
@@ -501,16 +497,15 @@ country_event = {
     option = {
         name = colony_automation_event.110.opt.03
         trigger = {
-            # 使用当前刷新的计数器进行范围截断，避免上一轮的幽灵 event_target 被显示出来
+            # Use the refreshed count to avoid stale event targets.
             check_variable = {
-                which = bca_arcology_project_candidate_planet_count
+                which = bca_world_transform_candidate_planet_count
                 value >= 3
             }
-            exists = event_target:bca_arcology_project_candidate_planet_03
+            exists = event_target:bca_world_transform_candidate_planet_03
         }
         hidden_effect = {
-            # 直接转跳到星球作用域的星球事件，不需要额外保存 event_target 了
-            event_target:bca_arcology_project_candidate_planet_03 = {
+            event_target:bca_world_transform_candidate_planet_03 = {
                 carrier_event = { id = colony_automation_event.102 }
             }
         }
@@ -518,16 +513,15 @@ country_event = {
     option = {
         name = colony_automation_event.110.opt.04
         trigger = {
-            # 使用当前刷新的计数器进行范围截断，避免上一轮的幽灵 event_target 被显示出来
+            # Use the refreshed count to avoid stale event targets.
             check_variable = {
-                which = bca_arcology_project_candidate_planet_count
+                which = bca_world_transform_candidate_planet_count
                 value >= 4
             }
-            exists = event_target:bca_arcology_project_candidate_planet_04
+            exists = event_target:bca_world_transform_candidate_planet_04
         }
         hidden_effect = {
-            # 直接转跳到星球作用域的星球事件，不需要额外保存 event_target 了
-            event_target:bca_arcology_project_candidate_planet_04 = {
+            event_target:bca_world_transform_candidate_planet_04 = {
                 carrier_event = { id = colony_automation_event.102 }
             }
         }
@@ -535,16 +529,15 @@ country_event = {
     option = {
         name = colony_automation_event.110.opt.05
         trigger = {
-            # 使用当前刷新的计数器进行范围截断，避免上一轮的幽灵 event_target 被显示出来
+            # Use the refreshed count to avoid stale event targets.
             check_variable = {
-                which = bca_arcology_project_candidate_planet_count
+                which = bca_world_transform_candidate_planet_count
                 value >= 5
             }
-            exists = event_target:bca_arcology_project_candidate_planet_05
+            exists = event_target:bca_world_transform_candidate_planet_05
         }
         hidden_effect = {
-            # 直接转跳到星球作用域的星球事件，不需要额外保存 event_target 了
-            event_target:bca_arcology_project_candidate_planet_05 = {
+            event_target:bca_world_transform_candidate_planet_05 = {
                 carrier_event = { id = colony_automation_event.102 }
             }
         }
@@ -552,16 +545,15 @@ country_event = {
     option = {
         name = colony_automation_event.110.opt.06
         trigger = {
-            # 使用当前刷新的计数器进行范围截断，避免上一轮的幽灵 event_target 被显示出来
+            # Use the refreshed count to avoid stale event targets.
             check_variable = {
-                which = bca_arcology_project_candidate_planet_count
+                which = bca_world_transform_candidate_planet_count
                 value >= 6
             }
-            exists = event_target:bca_arcology_project_candidate_planet_06
+            exists = event_target:bca_world_transform_candidate_planet_06
         }
         hidden_effect = {
-            # 直接转跳到星球作用域的星球事件，不需要额外保存 event_target 了
-            event_target:bca_arcology_project_candidate_planet_06 = {
+            event_target:bca_world_transform_candidate_planet_06 = {
                 carrier_event = { id = colony_automation_event.102 }
             }
         }
@@ -569,16 +561,15 @@ country_event = {
     option = {
         name = colony_automation_event.110.opt.07
         trigger = {
-            # 使用当前刷新的计数器进行范围截断，避免上一轮的幽灵 event_target 被显示出来
+            # Use the refreshed count to avoid stale event targets.
             check_variable = {
-                which = bca_arcology_project_candidate_planet_count
+                which = bca_world_transform_candidate_planet_count
                 value >= 7
             }
-            exists = event_target:bca_arcology_project_candidate_planet_07
+            exists = event_target:bca_world_transform_candidate_planet_07
         }
         hidden_effect = {
-            # 直接转跳到星球作用域的星球事件，不需要额外保存 event_target 了
-            event_target:bca_arcology_project_candidate_planet_07 = {
+            event_target:bca_world_transform_candidate_planet_07 = {
                 carrier_event = { id = colony_automation_event.102 }
             }
         }
@@ -586,16 +577,15 @@ country_event = {
     option = {
         name = colony_automation_event.110.opt.08
         trigger = {
-            # 使用当前刷新的计数器进行范围截断，避免上一轮的幽灵 event_target 被显示出来
+            # Use the refreshed count to avoid stale event targets.
             check_variable = {
-                which = bca_arcology_project_candidate_planet_count
+                which = bca_world_transform_candidate_planet_count
                 value >= 8
             }
-            exists = event_target:bca_arcology_project_candidate_planet_08
+            exists = event_target:bca_world_transform_candidate_planet_08
         }
         hidden_effect = {
-            # 直接转跳到星球作用域的星球事件，不需要额外保存 event_target 了
-            event_target:bca_arcology_project_candidate_planet_08 = {
+            event_target:bca_world_transform_candidate_planet_08 = {
                 carrier_event = { id = colony_automation_event.102 }
             }
         }
@@ -603,16 +593,15 @@ country_event = {
     option = {
         name = colony_automation_event.110.opt.09
         trigger = {
-            # 使用当前刷新的计数器进行范围截断，避免上一轮的幽灵 event_target 被显示出来
+            # Use the refreshed count to avoid stale event targets.
             check_variable = {
-                which = bca_arcology_project_candidate_planet_count
+                which = bca_world_transform_candidate_planet_count
                 value >= 9
             }
-            exists = event_target:bca_arcology_project_candidate_planet_09
+            exists = event_target:bca_world_transform_candidate_planet_09
         }
         hidden_effect = {
-            # 直接转跳到星球作用域的星球事件，不需要额外保存 event_target 了
-            event_target:bca_arcology_project_candidate_planet_09 = {
+            event_target:bca_world_transform_candidate_planet_09 = {
                 carrier_event = { id = colony_automation_event.102 }
             }
         }

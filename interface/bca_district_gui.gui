@@ -304,17 +304,17 @@ guiTypes = {
             size = { x = 50 y = 50 }
             scale = 1.1111111111111112
             alwaysTransparent = yes
-            effect = "bca_planet_setting_world_transform_candidate_arcology_project"
+            effect = "bca_planet_setting_world_transform_candidate"
         }
         effectButtonType = {
-            name = "setting_world_transform_candidate_arcology_project"
+            name = "setting_world_transform_candidate"
             position = { x = 437.75 y = 40 }
             size = { x = 50 y = 50 }
             scale = 0.6493506493506493
             quadTextureSprite = "GFX_tiling_button_standard"
-            effect = "bca_planet_setting_world_transform_candidate_arcology_project"
-            tooltipText = "BCA_PLANET_SETTING_arcology_project_candidate"
-            delayedTooltipText = "BCA_PLANET_SETTING_arcology_project_candidate_DESC"
+            effect = "bca_planet_setting_world_transform_candidate"
+            tooltipText = "BCA_PLANET_SETTING_WORLD_TRANSFORM_CANDIDATE"
+            delayedTooltipText = "BCA_PLANET_SETTING_WORLD_TRANSFORM_CANDIDATE_DESC"
         }
         effectButtonType = {
             name = "setting_world_transform_candidate_cancel"

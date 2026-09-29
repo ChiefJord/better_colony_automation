@@ -1,0 +1,99 @@
+bca_arkship_upgrade_tier_2 = {
+    sound = event_administrative_work
+    icon = decision_reactor
+    enactment_time = 900
+
+    resources = {
+        category = decisions
+        cost = {
+            alloys = 5000
+            influence = 250
+            mult = owner.value:bca_arkship_upgrade_cost_mult
+        }
+    }
+
+    potential = {
+        has_modifier = bca_pm_arkship_upgrade_candidate
+        bca_can_upgrade_arkship_to_tier_2 = yes
+    }
+
+    allow = {
+        custom_tooltip = {
+            fail_text = bca_no_enough_resources_for_arkship_upgrade
+            bca_has_resource_for_arkship_upgrade = yes
+        }
+    }
+
+    effect = {
+        fleet = {
+            starbase? = {
+                switch = {
+                    trigger = is_ship_size
+                    civilian_arkship_tier_1 = {
+                        set_starbase_size = civilian_arkship_tier_2
+                    }
+                    science_arkship_tier_1 = {
+                        set_starbase_size = science_arkship_tier_2
+                    }
+                    military_arkship_tier_1 = {
+                        set_starbase_size = military_arkship_tier_2
+                    }
+                }
+            }
+        }
+    }
+
+    ai_weight = {
+        weight = 0
+    }
+}
+
+bca_arkship_upgrade_tier_3 = {
+    sound = event_administrative_work
+    icon = decision_reactor
+    enactment_time = 1080
+
+    resources = {
+        category = decisions
+        cost = {
+            alloys = 5000
+            influence = 250
+            mult = owner.value:bca_arkship_upgrade_cost_mult
+        }
+    }
+
+    potential = {
+        has_modifier = bca_pm_arkship_upgrade_candidate
+        bca_can_upgrade_arkship_to_tier_3 = yes
+    }
+
+    allow = {
+        custom_tooltip = {
+            fail_text = bca_no_enough_resources_for_arkship_upgrade
+            bca_has_resource_for_arkship_upgrade = yes
+        }
+    }
+
+    effect = {
+        fleet = {
+            starbase? = {
+                switch = {
+                    trigger = is_ship_size
+                    civilian_arkship_tier_2 = {
+                        set_starbase_size = civilian_arkship_tier_3
+                    }
+                    science_arkship_tier_2 = {
+                        set_starbase_size = science_arkship_tier_3
+                    }
+                    military_arkship_tier_2 = {
+                        set_starbase_size = military_arkship_tier_3
+                    }
+                }
+            }
+        }
+    }
+
+    ai_weight = {
+        weight = 0
+    }
+}

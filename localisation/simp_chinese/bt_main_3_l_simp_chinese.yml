@@ -253,3 +253,10 @@
 
  bca_pm_arcology_project_candidate: "理想城计划候选"
  bca_pm_arcology_project_candidate_desc: "将自动替换资源区划为城市区划并在合适时开启理想城计划。"
+ bca_pm_arkship_upgrade_candidate: "方舟升级候选"
+ bca_pm_arkship_upgrade_candidate_desc: "此方舟等待自动化升级提示。请勿同时排队原版方舟升级。"
+
+ bca_arkship_upgrade_tier_2: "§B!BCA!§!: 升级方舟至二级"
+ bca_arkship_upgrade_tier_2_desc: "将方舟升级至二级加入队列。请勿同时排队原版方舟升级。"
+ bca_arkship_upgrade_tier_3: "§B!BCA!§!: 升级方舟至三级"
+ bca_arkship_upgrade_tier_3_desc: "将方舟升级至三级加入队列。请勿同时排队原版方舟升级。"

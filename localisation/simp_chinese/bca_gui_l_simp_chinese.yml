@@ -19,7 +19,11 @@
  BCA_PLANET_SETTING_prebuild_rare_resource_buildings_DESC: "在无财政赤字时提前建造稀有资源建筑。"
  BCA_PLANET_SETTING_arcology_project_candidate: "£district£ £decision£ 理想城候选"
  BCA_PLANET_SETTING_arcology_project_candidate_DESC: "标记为理想城候选。自动化将基于此目标进行规划。"
- BCA_PLANET_SETTING_WORLD_TRANSFORM_CANDIDATE_CANCEL_DESC: "取消该星球的候选状态。次要区划规划的将恢复为当前状态。"
+ BCA_PLANET_SETTING_ARKSHIP_UPGRADE_CANDIDATE: "£decision£ 方舟升级候选"
+ BCA_PLANET_SETTING_ARKSHIP_UPGRADE_CANDIDATE_DESC: "标记为方舟升级候选。候选有效时请勿同时排队原版方舟升级。"
+ BCA_PLANET_SETTING_WORLD_TRANSFORM_CANDIDATE: "£decision£ 改造候选"
+ BCA_PLANET_SETTING_WORLD_TRANSFORM_CANDIDATE_DESC: "将此殖民地标记为可用的世界改造候选。"
+ BCA_PLANET_SETTING_WORLD_TRANSFORM_CANDIDATE_CANCEL_DESC: "取消此殖民地的改造候选状态。"
 
  PRIMARY_DISTRICT_SETTINGS: "§E主要区划设置§!"
  SECONDARY_DISTRICT_SETTINGS: "§E次要区划设置§!"

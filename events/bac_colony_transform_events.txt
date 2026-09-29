@@ -1,19 +1,26 @@
 namespace = colony_automation_event
 
-# cancel arcology project candidate
+# Cancel a world-transform candidate. Arcology cancellation also restores zone plans.
 carrier_event = {
 	id = colony_automation_event.100
 	hide_window = yes
 	is_triggered_only = yes
 	trigger = { always = yes }
 	immediate = {
-		remove_modifier = bca_pm_arcology_project_candidate
-		clear_open_selector = yes
-		bca_secondary_zone_setting_set_by_current_zones = yes
+		if = {
+			limit = { has_modifier = bca_pm_arcology_project_candidate }
+			remove_modifier = bca_pm_arcology_project_candidate
+			clear_open_selector = yes
+			bca_secondary_zone_setting_set_by_current_zones = yes
+		}
+		if = {
+			limit = { has_modifier = bca_pm_arkship_upgrade_candidate }
+			remove_modifier = bca_pm_arkship_upgrade_candidate
+		}
 	}
 }
 
-# 理想城建造询问事件
+# World-transform project confirmation event.
 carrier_event = {
 	id = colony_automation_event.102
 	title = colony_automation_event.102.name
@@ -27,20 +34,43 @@ carrier_event = {
 	option = {
 		name = colony_automation_event.102.a
 		allow = {
-			custom_tooltip = {
-				fail_text = bca_no_enough_resources_for_arcology_project
-				bca_has_resource_for_arcology_project = yes
+			OR = {
+				AND = {
+					has_modifier = bca_pm_arcology_project_candidate
+					custom_tooltip = {
+						fail_text = bca_no_enough_resources_for_arcology_project
+						bca_has_resource_for_arcology_project = yes
+					}
+				}
+				AND = {
+					has_modifier = bca_pm_arkship_upgrade_candidate
+					custom_tooltip = {
+						fail_text = bca_no_enough_resources_for_arkship_upgrade
+						bca_has_resource_for_arkship_upgrade = yes
+					}
+				}
 			}
 		}
 		if = {
-			limit = { is_planet_class = pc_relic }
-			select_decision = { name = decision_arcology_project_relic }
+			limit = { has_modifier = bca_pm_arcology_project_candidate }
+			if = {
+				limit = { is_planet_class = pc_relic }
+				select_decision = { name = decision_arcology_project_relic }
+			}
+			else = {
+				select_decision = { name = decision_arcology_project }
+			}
+		}
+		else_if = {
+			limit = { bca_can_upgrade_arkship_to_tier_2 = yes }
+			select_decision = { name = bca_arkship_upgrade_tier_2 }
 		}
 		else = {
-			select_decision = { name = decision_arcology_project }
+			select_decision = { name = bca_arkship_upgrade_tier_3 }
 		}
 		hidden_effect = {
 			remove_modifier = bca_pm_arcology_project_candidate
+			remove_modifier = bca_pm_arkship_upgrade_candidate
 			owner = {
 				country_event = {
 					id = colony_automation_event.109
@@ -52,9 +82,21 @@ carrier_event = {
 	}
 	option = {
 		allow = {
-			custom_tooltip = {
-				fail_text = bca_no_enough_resources_for_arcology_project
-				bca_has_resource_for_arcology_project = yes
+			OR = {
+				AND = {
+					has_modifier = bca_pm_arcology_project_candidate
+					custom_tooltip = {
+						fail_text = bca_no_enough_resources_for_arcology_project
+						bca_has_resource_for_arcology_project = yes
+					}
+				}
+				AND = {
+					has_modifier = bca_pm_arkship_upgrade_candidate
+					custom_tooltip = {
+						fail_text = bca_no_enough_resources_for_arkship_upgrade
+						bca_has_resource_for_arkship_upgrade = yes
+					}
+				}
 			}
 		}
         name = colony_automation_event.102.d

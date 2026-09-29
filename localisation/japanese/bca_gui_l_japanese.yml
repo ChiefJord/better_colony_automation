@@ -19,7 +19,11 @@
   BCA_PLANET_SETTING_prebuild_rare_resource_buildings_DESC: "予算赤字がない場合に希少資源の建物を事前に建設します。"
   BCA_PLANET_SETTING_arcology_project_candidate: "£district£ £decision£ アーコロジー候補"
   BCA_PLANET_SETTING_arcology_project_candidate_DESC: "アーコロジー候補としてマークします。自動化はこの目標に基づいて計画します。"
-  BCA_PLANET_SETTING_WORLD_TRANSFORM_CANDIDATE_CANCEL_DESC: "惑星の候補ステータスを取り消します。二次地区の計画は現在の状態に戻ります。"
+  BCA_PLANET_SETTING_ARKSHIP_UPGRADE_CANDIDATE: "£decision£ アークシップ強化候補"
+  BCA_PLANET_SETTING_ARKSHIP_UPGRADE_CANDIDATE_DESC: "アークシップ強化候補としてマークします。この候補が有効な間は、元のアークシップ強化を同時にキューへ入れないでください。"
+  BCA_PLANET_SETTING_WORLD_TRANSFORM_CANDIDATE: "£decision£ 改造候補"
+  BCA_PLANET_SETTING_WORLD_TRANSFORM_CANDIDATE_DESC: "この植民地を利用可能な世界改造候補としてマークします。"
+  BCA_PLANET_SETTING_WORLD_TRANSFORM_CANDIDATE_CANCEL_DESC: "この植民地の改造候補状態を解除します。"
 
   PRIMARY_DISTRICT_SETTINGS: "§E一次地区設定§!"
   SECONDARY_DISTRICT_SETTINGS: "§E二次地区設定§!"

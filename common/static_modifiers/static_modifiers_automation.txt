@@ -5,3 +5,9 @@ bca_pm_arcology_project_candidate = {
 	custom_tooltip = "bca_pm_arcology_project_candidate_desc"
 }
 
+bca_pm_arkship_upgrade_candidate = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_arcology_project.dds"
+	icon_frame = 2
+	custom_tooltip = "bca_pm_arkship_upgrade_candidate_desc"
+}
+
