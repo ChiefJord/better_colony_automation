@@ -40,6 +40,7 @@ bca_empire_needs_energy = {
 
 bca_planet_build_needs_energy = {
     OR = {
+        has_generator_designation = yes
         has_carrier_flag = bca_pf_planet_pre_construction
         bca_empire_needs_energy = yes
     }
@@ -112,6 +113,7 @@ bca_empire_needs_minerals = {
 
 bca_planet_build_needs_minerals = {
     OR = {
+        has_mining_designation = yes
         has_carrier_flag = bca_pf_planet_pre_construction
         bca_empire_needs_minerals = yes
     }
@@ -184,6 +186,7 @@ bca_empire_needs_food = {
 
 bca_planet_build_needs_food = {
     OR = {
+        has_farming_designation = yes
         has_carrier_flag = bca_pf_planet_pre_construction
         bca_empire_needs_food = yes
     }
@@ -256,6 +259,7 @@ bca_empire_needs_alloys = {
 
 bca_planet_build_needs_alloys = {
     OR = {
+        has_any_foundry_designation = yes
         has_carrier_flag = bca_pf_planet_pre_construction
         bca_empire_needs_alloys = yes
     }
@@ -328,6 +332,7 @@ bca_empire_needs_consumer_goods = {
 
 bca_planet_build_needs_consumer_goods = {
     OR = {
+        has_any_factory_designation = yes
         has_carrier_flag = bca_pf_planet_pre_construction
         bca_empire_needs_consumer_goods = yes
     }
@@ -366,6 +371,10 @@ bca_empire_has_surplus_consumer_goods = {
 
 bca_country_needs_trade = {
     OR = {
+        is_gestalt = no
+        has_valid_civic = civic_machine_assimilator
+    }
+    OR = {
         NOT = { has_country_flag = bca_enable_economic_management }
         has_country_flag = bca_economic_target_trade_unlimited
         AND = {
@@ -400,8 +409,19 @@ bca_empire_needs_trade = {
 
 bca_planet_build_needs_trade = {
     OR = {
-        has_carrier_flag = bca_pf_planet_pre_construction
-        bca_empire_needs_trade = yes
+        bca_has_any_trade_designation = yes
+        AND = {
+            owner = {
+                OR = {
+                    is_gestalt = no
+                    has_valid_civic = civic_machine_assimilator
+                }
+            }
+            OR = {
+                has_carrier_flag = bca_pf_planet_pre_construction
+                bca_empire_needs_trade = yes
+            }
+        }
     }
 }
 
@@ -472,6 +492,7 @@ bca_empire_needs_unity = {
 
 bca_planet_build_needs_unity = {
     OR = {
+        has_any_unity_designation = yes
         has_carrier_flag = bca_pf_planet_pre_construction
         bca_empire_needs_unity = yes
     }
@@ -544,6 +565,7 @@ bca_empire_needs_physics_research = {
 
 bca_planet_build_needs_physics_research = {
     OR = {
+        has_any_research_designation = yes
         has_carrier_flag = bca_pf_planet_pre_construction
         bca_empire_needs_physics_research = yes
     }
@@ -616,6 +638,7 @@ bca_empire_needs_society_research = {
 
 bca_planet_build_needs_society_research = {
     OR = {
+        has_any_research_designation = yes
         has_carrier_flag = bca_pf_planet_pre_construction
         bca_empire_needs_society_research = yes
     }
@@ -688,6 +711,7 @@ bca_empire_needs_engineering_research = {
 
 bca_planet_build_needs_engineering_research = {
     OR = {
+        has_any_research_designation = yes
         has_carrier_flag = bca_pf_planet_pre_construction
         bca_empire_needs_engineering_research = yes
     }
@@ -958,6 +982,7 @@ bca_empire_needs_research = {
 
 bca_planet_build_needs_research = {
     OR = {
+        has_any_research_designation = yes
         has_carrier_flag = bca_pf_planet_pre_construction
         bca_empire_needs_research = yes
     }
@@ -978,3 +1003,61 @@ bca_empire_has_surplus_research = {
         bca_country_surplus_research = yes
     }
 }
+
+
+bca_country_can_consume_energy = {
+    resource_income_compare = { resource = energy value >= 0 }
+    OR = {
+        NOT = { has_country_flag = bca_enable_economic_management }
+        bca_country_needs_energy = no
+    }
+}
+
+bca_empire_can_consume_energy = {
+    owner = {
+        bca_country_can_consume_energy = yes
+    }
+}
+
+bca_country_can_consume_exotic_gases = {
+    resource_income_compare = { resource = exotic_gases value >= 0 }
+    OR = {
+        NOT = { has_country_flag = bca_enable_economic_management }
+        bca_country_needs_exotic_gases = no
+    }
+}
+
+bca_empire_can_consume_exotic_gases = {
+    owner = {
+        bca_country_can_consume_exotic_gases = yes
+    }
+}
+
+bca_country_can_consume_rare_crystals = {
+    resource_income_compare = { resource = rare_crystals value >= 0 }
+    OR = {
+        NOT = { has_country_flag = bca_enable_economic_management }
+        bca_country_needs_rare_crystals = no
+    }
+}
+
+bca_empire_can_consume_rare_crystals = {
+    owner = {
+        bca_country_can_consume_rare_crystals = yes
+    }
+}
+
+bca_country_can_consume_volatile_motes = {
+    resource_income_compare = { resource = volatile_motes value >= 0 }
+    OR = {
+        NOT = { has_country_flag = bca_enable_economic_management }
+        bca_country_needs_volatile_motes = no
+    }
+}
+
+bca_empire_can_consume_volatile_motes = {
+    owner = {
+        bca_country_can_consume_volatile_motes = yes
+    }
+}
+

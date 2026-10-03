@@ -13,6 +13,10 @@ bca_try_build_district_0 = {
                 value > value:bca_committed_primary_district
             }
             OR = {
+                has_modifier = bca_pm_arcology_project_candidate
+                free_housing <= 5
+            }
+            OR = {
                 AND = {
                     OR = {
                         has_carrier_flag = bca_pf_ps_selected_zone_z1_zone_ark_forever_cruise_city_crew

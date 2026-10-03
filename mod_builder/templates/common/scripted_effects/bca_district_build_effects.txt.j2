@@ -116,6 +116,10 @@
                     which = value:bca_num_primary_districts_plan
                     value > value:bca_committed_primary_district
                 }
+                OR = {
+                    has_modifier = bca_pm_arcology_project_candidate
+                    free_housing <= 5
+                }
                 {{ district_slot_economic_allowed('d0', ['z1', 'z2']) }}
             }
             set_carrier_flag = {{ pf.flag_district_plan_build('d0') }}

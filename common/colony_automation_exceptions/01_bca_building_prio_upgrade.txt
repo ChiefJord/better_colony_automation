@@ -32,10 +32,18 @@ automate_capital_building = {
 		colony_shelter_0 = {
 			building = building_colony_shelter
 		}
+		capital = {
+			building = building_capital
+		}
+		major_capital = {
+			building = building_major_capital
+		}
+		system_capital = {
+			building = building_system_capital
+		}
 		resort_capital = {
 			building = building_resort_capital
 		}
-
 		slave_capital = {
 			building = building_slave_capital
 		}
@@ -54,6 +62,12 @@ automate_capital_habitat = {
 		hab_capital_0 = {
 			building = building_hab_capital
 		}
+		hab_major_capital = {
+			building = building_hab_major_capital
+		}
+		hab_system_capital = {
+			building = building_hab_system_capital
+		}
 	}
 }
 
@@ -71,6 +85,15 @@ automate_capital_building_machine = {
 		machine_0 = {
 			building = building_deployment_post
 		}
+		machine_capital = {
+			building = building_machine_capital
+		}
+		machine_major_capital = {
+			building = building_machine_major_capital
+		}
+		machine_system_capital = {
+			building = building_machine_system_capital
+		}
 	}
 }
 
@@ -87,6 +110,9 @@ automate_capital_building_hive = {
 	buildings = {
 		hive_capital_0 = {
 			building = building_hive_capital
+		}
+		hive_major_capital = {
+			building = building_hive_major_capital
 		}
 	}
 }

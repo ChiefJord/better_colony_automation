@@ -260,4 +260,64 @@ bca_resource_planet_controller_district_only = {
             }
         }
     }
+    else_if = {
+        limit = {
+            OR = {
+                is_capital = yes
+                has_designation = col_capital
+                has_designation = col_capital_machine
+                has_designation = col_capital_hive
+            }
+        }
+        if = {
+            limit = {
+                bca_auto_district_manage_enabled = yes
+            }
+            if = {
+                limit = {
+                    bca_planet_build_needs_energy = yes
+                }
+                set_variable = {
+                    which = bca_ps_plan_district_count_z3
+                    value = value:bca_district_max_build_d1
+                }
+            }
+            else = {
+                set_variable = {
+                    which = bca_ps_plan_district_count_z3
+                    value = value:bca_committed_district_d1
+                }
+            }
+            if = {
+                limit = {
+                    bca_planet_build_needs_minerals = yes
+                }
+                set_variable = {
+                    which = bca_ps_plan_district_count_z4
+                    value = value:bca_district_max_build_d2
+                }
+            }
+            else = {
+                set_variable = {
+                    which = bca_ps_plan_district_count_z4
+                    value = value:bca_committed_district_d2
+                }
+            }
+            if = {
+                limit = {
+                    bca_planet_build_needs_food = yes
+                }
+                set_variable = {
+                    which = bca_ps_plan_district_count_z5
+                    value = value:bca_district_max_build_d3
+                }
+            }
+            else = {
+                set_variable = {
+                    which = bca_ps_plan_district_count_z5
+                    value = value:bca_committed_district_d3
+                }
+            }
+        }
+    }
 }

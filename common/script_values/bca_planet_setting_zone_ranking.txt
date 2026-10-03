@@ -12,6 +12,14 @@ bca_planet_setting_zone_rank_urban = {
         add = -1000
     }
     modifier = {
+        OR = {
+            has_designation = col_city
+            has_designation = col_nexus
+            has_designation = col_hive
+        }
+        add = 1200
+    }
+    modifier = {
         bca_is_farming_habitat = yes
         add = 1500
     }
@@ -24,6 +32,18 @@ bca_planet_setting_zone_rank_trade = {
     modifier = {
         has_trade_designation = yes
         add = 1000
+    }
+    modifier = {
+        NOT = { has_trade_designation = yes }
+        add = -2000
+    }
+    modifier = {
+        exists = owner
+        owner = {
+            is_gestalt = yes
+            NOT = { has_valid_civic = civic_machine_assimilator }
+        }
+        add = -10000
     }
 }
 
@@ -43,6 +63,14 @@ bca_planet_setting_zone_rank_industrial = {
         has_foundry_designation = yes
         add = 500
     }
+    modifier = {
+        OR = {
+            has_generator_designation = yes
+            has_mining_designation = yes
+            has_farming_designation = yes
+        }
+        subtract = 1000
+    }
 }
 
 
@@ -60,6 +88,21 @@ bca_planet_setting_zone_rank_foundry = {
     modifier = {
         has_factory_designation = yes
         add = 500
+    }
+    modifier = {
+        OR = {
+            has_designation = col_capital
+            has_designation = col_capital_machine
+        }
+        add = 800
+    }
+    modifier = {
+        OR = {
+            has_generator_designation = yes
+            has_mining_designation = yes
+            has_farming_designation = yes
+        }
+        subtract = 1000
     }
 }
 
@@ -79,6 +122,14 @@ bca_planet_setting_zone_rank_factory = {
         has_foundry_designation = yes
         add = 500
     }
+    modifier = {
+        OR = {
+            has_generator_designation = yes
+            has_mining_designation = yes
+            has_farming_designation = yes
+        }
+        subtract = 1000
+    }
 }
 
 
@@ -88,6 +139,22 @@ bca_planet_setting_zone_rank_research = {
     modifier = {
         has_research_designation = yes
         add = 1000
+    }
+    modifier = {
+        OR = {
+            has_designation = col_capital
+            has_designation = col_capital_machine
+            has_designation = col_capital_hive
+        }
+        add = 1000
+    }
+    modifier = {
+        OR = {
+            has_generator_designation = yes
+            has_mining_designation = yes
+            has_farming_designation = yes
+        }
+        subtract = 1000
     }
 }
 
@@ -142,6 +209,14 @@ bca_planet_setting_zone_rank_unity = {
     modifier = {
         has_unity_designation = yes
         add = 1000
+    }
+    modifier = {
+        OR = {
+            has_designation = col_capital
+            has_designation = col_capital_machine
+            has_designation = col_capital_hive
+        }
+        add = 600
     }
 }
 
@@ -546,6 +621,18 @@ bca_planet_setting_zone_rank_wilderness_trade = {
     modifier = {
         has_designation = col_wilderness_unification
         add = 600
+    }
+    modifier = {
+        NOT = { has_trade_designation = yes }
+        add = -2000
+    }
+    modifier = {
+        exists = owner
+        owner = {
+            is_gestalt = yes
+            NOT = { has_valid_civic = civic_machine_assimilator }
+        }
+        add = -10000
     }
 }
 

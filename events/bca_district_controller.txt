@@ -112,111 +112,52 @@ carrier_event = {
             }
         }
         else = {
-            random_list = {
-                1 = {
-                    if = {
-                        limit = {
-                            NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
-                        }
-                        bca_try_build_district_0 = yes
-                    }
-                    if = {
-                        limit = {
-                            NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
-                        }
-                        bca_try_build_district_1 = yes
-                    }
-                    if = {
-                        limit = {
-                            NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
-                        }
-                        bca_try_build_district_2 = yes
-                    }
-                    if = {
-                        limit = {
-                            NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
-                        }
-                        bca_try_build_district_3 = yes
-                    }
+            # Core economic needs first: Energy -> Minerals -> Food
+            if = {
+                limit = {
+                    NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
+                    bca_planet_build_needs_energy = yes
                 }
-                1 = {
-                    if = {
-                        limit = {
-                            NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
-                        }
-                        bca_try_build_district_1 = yes
-                    }
-                    if = {
-                        limit = {
-                            NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
-                        }
-                        bca_try_build_district_2 = yes
-                    }
-                    if = {
-                        limit = {
-                            NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
-                        }
-                        bca_try_build_district_3 = yes
-                    }
-                    if = {
-                        limit = {
-                            NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
-                        }
-                        bca_try_build_district_0 = yes
-                    }
+                bca_try_build_district_1 = yes
+            }
+            if = {
+                limit = {
+                    NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
+                    bca_planet_build_needs_minerals = yes
                 }
-                1 = {
-                    if = {
-                        limit = {
-                            NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
-                        }
-                        bca_try_build_district_2 = yes
-                    }
-                    if = {
-                        limit = {
-                            NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
-                        }
-                        bca_try_build_district_3 = yes
-                    }
-                    if = {
-                        limit = {
-                            NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
-                        }
-                        bca_try_build_district_0 = yes
-                    }
-                    if = {
-                        limit = {
-                            NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
-                        }
-                        bca_try_build_district_1 = yes
-                    }
+                bca_try_build_district_2 = yes
+            }
+            if = {
+                limit = {
+                    NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
+                    bca_planet_build_needs_food = yes
                 }
-                1 = {
-                    if = {
-                        limit = {
-                            NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
-                        }
-                        bca_try_build_district_3 = yes
-                    }
-                    if = {
-                        limit = {
-                            NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
-                        }
-                        bca_try_build_district_0 = yes
-                    }
-                    if = {
-                        limit = {
-                            NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
-                        }
-                        bca_try_build_district_1 = yes
-                    }
-                    if = {
-                        limit = {
-                            NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
-                        }
-                        bca_try_build_district_2 = yes
-                    }
+                bca_try_build_district_3 = yes
+            }
+            # Only if core economic needs are not asking for districts, check primary and secondary
+            if = {
+                limit = {
+                    NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
                 }
+                bca_try_build_district_0 = yes
+            }
+            if = {
+                limit = {
+                    NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
+                }
+                bca_try_build_district_1 = yes
+            }
+            if = {
+                limit = {
+                    NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
+                }
+                bca_try_build_district_2 = yes
+            }
+            if = {
+                limit = {
+                    NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
+                }
+                bca_try_build_district_3 = yes
             }
         }
     }

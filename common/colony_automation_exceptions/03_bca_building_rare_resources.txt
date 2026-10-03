@@ -1,7 +1,24 @@
-	automate_crystal_deficit_management = {
+automate_crystal_deficit_management = {
 	available = {
 		bca_has_main_resource_to_build = yes
-		has_any_industrial_designation = yes
+		owner = {
+			OR = {
+				resource_income_compare = { resource = rare_crystals value < 0 }
+				AND = {
+					has_country_flag = bca_enable_economic_management
+					bca_country_needs_rare_crystals = yes
+				}
+			}
+		}
+		OR = {
+			has_any_industrial_designation = yes
+			AND = {
+				free_building_slots > 0
+				has_research_designation = no
+				has_unity_designation = no
+				has_fortress_designation = no
+			}
+		}
 	}
 	emergency = yes
 	category = "planet_automation_rare_resources"
@@ -25,7 +42,24 @@
 automate_mote_deficit_management = {
 	available = {
 		bca_has_main_resource_to_build = yes
-		has_any_industrial_designation = yes
+		owner = {
+			OR = {
+				resource_income_compare = { resource = volatile_motes value < 0 }
+				AND = {
+					has_country_flag = bca_enable_economic_management
+					bca_country_needs_volatile_motes = yes
+				}
+			}
+		}
+		OR = {
+			has_any_industrial_designation = yes
+			AND = {
+				free_building_slots > 0
+				has_research_designation = no
+				has_unity_designation = no
+				has_fortress_designation = no
+			}
+		}
 	}
 	emergency = yes
 	category = "planet_automation_rare_resources"
@@ -49,7 +83,24 @@ automate_mote_deficit_management = {
 automate_gas_deficit_management = {
 	available = {
 		bca_has_main_resource_to_build = yes
-		has_any_industrial_designation = yes
+		owner = {
+			OR = {
+				resource_income_compare = { resource = exotic_gases value < 0 }
+				AND = {
+					has_country_flag = bca_enable_economic_management
+					bca_country_needs_exotic_gases = yes
+				}
+			}
+		}
+		OR = {
+			has_any_industrial_designation = yes
+			AND = {
+				free_building_slots > 0
+				has_research_designation = no
+				has_unity_designation = no
+				has_fortress_designation = no
+			}
+		}
 	}
 	emergency = yes
 	category = "planet_automation_rare_resources"

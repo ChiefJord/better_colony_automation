@@ -16,16 +16,12 @@ has_any_resource_designation = {
 has_trade_designation = {
     OR = {
         has_designation = col_capital_trade
-        has_designation = col_city
         has_designation = col_habitat_trade
         has_designation = col_ring_trade
         has_designation = col_ecu_mix
-        has_designation = col_nexus
         has_designation = col_trade_machine
         has_designation = col_nomad_city
-        has_designation = col_nomad_nexus
         has_designation = col_capital_nomad_trade
-        has_designation = col_hive
     }
 }
 
