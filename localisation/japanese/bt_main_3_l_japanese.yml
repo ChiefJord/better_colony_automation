@@ -252,3 +252,10 @@
 
  bca_pm_arcology_project_candidate: "理想都市計画候補"
  bca_pm_arcology_project_candidate_desc: "自動的に資源区域を都市区域に置換し、適切な場合に理想都市計画を開始します。"
+ bca_pm_arkship_upgrade_candidate: "アークシップ強化候補"
+ bca_pm_arkship_upgrade_candidate_desc: "このアークシップは自動化された強化確認を待機しています。同時に元のアークシップ強化をキューへ入れないでください。"
+
+ bca_arkship_upgrade_tier_2: "!BCA!: アークシップをティア2へ強化"
+ bca_arkship_upgrade_tier_2_desc: "アークシップをティア2へ強化する計画をキューへ入れます。同時に元のアークシップ強化をキューへ入れないでください。"
+ bca_arkship_upgrade_tier_3: "!BCA!: アークシップをティア3へ強化"
+ bca_arkship_upgrade_tier_3_desc: "アークシップをティア3へ強化する計画をキューへ入れます。同時に元のアークシップ強化をキューへ入れないでください。"

@@ -252,3 +252,10 @@
 
  bca_pm_arcology_project_candidate: "Arcology Project Candidate"
  bca_pm_arcology_project_candidate_desc: "Automatically replace resource districts with city districts and trigger the Arcology Project when appropriate."
+ bca_pm_arkship_upgrade_candidate: "Arkship Upgrade Candidate"
+ bca_pm_arkship_upgrade_candidate_desc: "This Arkship is queued for an automated upgrade prompt. Do not queue the original Arkship upgrade at the same time."
+
+ bca_arkship_upgrade_tier_2: "!BCA!: Upgrade Arkship to Tier 2"
+ bca_arkship_upgrade_tier_2_desc: "Queue an Arkship upgrade to tier 2. Do not queue the original Arkship upgrade at the same time."
+ bca_arkship_upgrade_tier_3: "!BCA!: Upgrade Arkship to Tier 3"
+ bca_arkship_upgrade_tier_3_desc: "Queue an Arkship upgrade to tier 3. Do not queue the original Arkship upgrade at the same time."

@@ -14,6 +14,7 @@
 /common/colony_automation_exceptions/31_bca_designation_buildings.txt
 /common/colony_automation_exceptions/500_bca_districts.txt
 /common/colony_automation_exceptions/500_bca_mixd_zones_building.txt
+/common/decisions/bca_arkship_upgrade.txt
 /common/decisions/bt_colony_transform.txt
 /common/script_values/bca_display_values.txt
 /common/script_values/bca_global_settings_economic_metrics.txt

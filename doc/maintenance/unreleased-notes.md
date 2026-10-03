@@ -9,6 +9,8 @@ intro/update messages, `README.md`, descriptors, and Workshop descriptions.
 
 ## Unreleased
 
+- Added direct `d3` district planning for Nomad Arkship fortress designations when district auto-demolition is enabled.
+
 ## Released In v2.1.2 (2026-08-05)
 
 - Fixed the Unlimited economic-target mode so it correctly allows automation to continue construction.

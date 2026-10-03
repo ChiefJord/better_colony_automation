@@ -45,6 +45,73 @@ bca_has_resource_for_arcology_project = {
 	}
 }
 
+bca_can_be_arcology_project_candidate = {
+	exists = owner
+	is_artificial = no
+	OR = {
+		AND = {
+			NOR = {
+				is_planet_class = pc_city
+				is_planet_class = pc_relic
+				has_modifier = resort_colony
+				has_modifier = penal_colony
+				has_modifier = slave_colony
+				has_modifier = pm_wenkwort_custodian
+			}
+			owner = { has_ascension_perk = ap_arcology_project }
+			NOT = { has_designation = col_nanotech_world }
+		}
+		AND = {
+			is_planet_class = pc_relic
+			owner = {
+				OR = {
+					is_regular_empire = yes
+					has_valid_civic = civic_machine_servitor
+				}
+			}
+		}
+	}
+}
+
+bca_can_upgrade_arkship_to_tier_2 = {
+	owner = { has_technology = tech_arkship_tier_2 }
+	fleet = {
+		starbase? = {
+			OR = {
+				is_ship_size = civilian_arkship_tier_1
+				is_ship_size = science_arkship_tier_1
+				is_ship_size = military_arkship_tier_1
+			}
+		}
+	}
+}
+
+bca_can_upgrade_arkship_to_tier_3 = {
+	owner = { has_technology = tech_arkship_tier_3 }
+	fleet = {
+		starbase? = {
+			OR = {
+				is_ship_size = civilian_arkship_tier_2
+				is_ship_size = science_arkship_tier_2
+				is_ship_size = military_arkship_tier_2
+			}
+		}
+	}
+}
+
+bca_has_resource_for_arkship_upgrade = {
+	owner = {
+		resource_stockpile_compare = {
+			resource = alloys
+			value >= value:bca_arkship_upgrade_required_alloys
+		}
+		resource_stockpile_compare = {
+			resource = influence
+			value >= value:bca_arkship_upgrade_required_influence
+		}
+	}
+}
+
 
 bca_has_build_plan = {
 	has_carrier_flag = bca_pf_plan_build_$type$

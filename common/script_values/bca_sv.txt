@@ -17,6 +17,33 @@ bca_value_divide = {
 	divide = $DIVIDE$
 }
 
+# The native Arkship upgrade modifier applies to both decision costs.
+bca_arkship_upgrade_cost_mult = {
+	base = 1
+	add = modifier:starbase_arkship_upgrades_cost_mult
+	min = 0
+}
+
+bca_arkship_upgrade_alloys_cost = {
+	base = 5000
+	mult = value:bca_arkship_upgrade_cost_mult
+}
+
+bca_arkship_upgrade_influence_cost = {
+	base = 250
+	mult = value:bca_arkship_upgrade_cost_mult
+}
+
+bca_arkship_upgrade_required_alloys = {
+	add = bca_reserve_alloys_amount
+	add = value:bca_arkship_upgrade_alloys_cost
+}
+
+bca_arkship_upgrade_required_influence = {
+	add = bca_reserve_influence_amount
+	add = value:bca_arkship_upgrade_influence_cost
+}
+
 bca_free_jobs_main = {
 	complex_trigger_modifier = {
 		trigger = free_jobs_of_type

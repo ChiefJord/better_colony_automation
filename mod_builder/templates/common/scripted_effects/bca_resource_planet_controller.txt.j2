@@ -244,6 +244,12 @@ bca_resource_planet_controller_district_only = {
     if = {
         limit = {
             bca_auto_district_manage_enabled = yes
+            NOT = {
+                AND = {
+                    has_designation = col_nomad_fortress
+                    has_carrier_flag = bca_pf_disable_planet_auto_destruction_district
+                }
+            }
         }
         if = {
             limit = {
@@ -268,6 +274,27 @@ bca_resource_planet_controller_district_only = {
                     value = 0
                 }
             {% endfor %}
+        }
+    }
+
+    # Nomad Arkship fortress designations devote every available district to d3.
+    if = {
+        limit = {
+            has_designation = col_nomad_fortress
+            bca_auto_district_manage_enabled = yes
+            NOT = { has_carrier_flag = bca_pf_disable_planet_auto_destruction_district }
+        }
+        set_variable = {
+            which = {{ v.var_district_num_plan('z3') }}
+            value = 0
+        }
+        set_variable = {
+            which = {{ v.var_district_num_plan('z4') }}
+            value = 0
+        }
+        set_variable = {
+            which = {{ v.var_district_num_plan('z5') }}
+            value = value:bca_district_max_build_d3
         }
     }
 

@@ -211,69 +211,69 @@ bca_planet_setting_storage_world_disable = {
     }
 }
 
-bca_planet_setting_world_transform_candidate_arcology_project = {
+bca_planet_setting_world_transform_candidate = {
     potential = {
         bca_has_advance_secondary_districts = no
-		exists = owner
-		NOT = { has_modifier = bca_pm_arcology_project_candidate }
-		is_artificial = no
-		OR = {
-			AND = {
-				NOR = {
-					is_planet_class = pc_city
-					is_planet_class = pc_relic
-					has_modifier = resort_colony
-					has_modifier = penal_colony
-					has_modifier = slave_colony
-					has_modifier = pm_wenkwort_custodian
-				}
-				owner = { has_ascension_perk = ap_arcology_project }
-				NOT = { has_designation = col_nanotech_world }
-			}
-			AND ={
-				is_planet_class = pc_relic
-				owner = {
-					OR = {
-						is_regular_empire = yes
-						has_valid_civic = civic_machine_servitor
-					}
-				}
-			}
+		NOR = {
+			has_modifier = bca_pm_arcology_project_candidate
+			has_modifier = bca_pm_arkship_upgrade_candidate
 		}
-
-	}
+		OR = {
+			bca_can_be_arcology_project_candidate = yes
+			bca_can_upgrade_arkship_to_tier_2 = yes
+			bca_can_upgrade_arkship_to_tier_3 = yes
+		}
+    }
 
     allow = {
-		has_farming_designation = no
-		has_mining_designation = no
-		has_generator_designation = no
+		OR = {
+			AND = {
+				bca_can_be_arcology_project_candidate = yes
+				has_farming_designation = no
+				has_mining_designation = no
+				has_generator_designation = no
+			}
+			bca_can_upgrade_arkship_to_tier_2 = yes
+			bca_can_upgrade_arkship_to_tier_3 = yes
+		}
 	}
 
     effect = {
-        hidden_effect = {
-            add_modifier = { modifier = "bca_pm_arcology_project_candidate" days = -1 }
-            remove_carrier_flag = bca_pf_can_build_extra_zones_for_storage
-            clear_open_selector = yes
-            bca_secondary_district_auto_select_default = yes
-            set_variable = {
-                which = bca_ps_plan_district_count_z3
-                value = 1
-            }
-            set_variable = {
-                which = bca_ps_plan_district_count_z4
-                value = 1
-            }
-            set_variable = {
-                which = bca_ps_plan_district_count_z5
-                value = 1
+        if = {
+            limit = { bca_can_be_arcology_project_candidate = yes }
+            custom_tooltip = BCA_PLANET_SETTING_arcology_project_candidate_DESC
+            hidden_effect = {
+                add_modifier = { modifier = "bca_pm_arcology_project_candidate" days = -1 }
+                remove_carrier_flag = bca_pf_can_build_extra_zones_for_storage
+                clear_open_selector = yes
+                bca_secondary_district_auto_select_default = yes
+                set_variable = {
+                    which = bca_ps_plan_district_count_z3
+                    value = 1
+                }
+                set_variable = {
+                    which = bca_ps_plan_district_count_z4
+                    value = 1
+                }
+                set_variable = {
+                    which = bca_ps_plan_district_count_z5
+                    value = 1
+                }
             }
         }
-	}
+        else = {
+            custom_tooltip = BCA_PLANET_SETTING_ARKSHIP_UPGRADE_CANDIDATE_DESC
+            add_modifier = { modifier = "bca_pm_arkship_upgrade_candidate" days = -1 }
+        }
+    }
 }
 
 bca_planet_setting_world_transform_candidate_cancel = {
     potential = {
-        has_modifier = bca_pm_arcology_project_candidate
+		OR = {
+			has_modifier = bca_pm_arcology_project_candidate
+			has_modifier = bca_pm_arkship_upgrade_candidate
+		}
     }
 
     allow = {
